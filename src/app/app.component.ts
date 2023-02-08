@@ -1,4 +1,7 @@
+import { AuthService } from './services/guards/auth.service';
 import { Component } from '@angular/core';
+import { first } from 'rxjs';
+import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -13,38 +16,24 @@ password: string = '';
 error: any = null;
 
 constructor(
-  private loginService: LoginService,
+  private auth: AuthService,
+  private router: Router
 ) { }
 
 ngOnInit(): void {
-  this.loginService
-    .errorMessage
-    .subscribe((errorMessage: any) => {
-      this.error = errorMessage;
-    });
+  // this.loginService
+  //   .errorMessage
+  //   .subscribe((errorMessage: any) => {
+  //     this.error = errorMessage;
+  //   });
 }
 
-  validateUsername(): void {
-    const pattern = RegExp(/^[\w-.]*$/);
-    if (pattern.test(this.username)) {
-        this.isUsernameValid = true;    
-    } else {
-        this.isUsernameValid = false;
-    }
-}
-
-onKey(event: any, type: string) {
-  if (type === 'username') {
-      this.username = event.target.value;
-  } else if (type === 'password') {
-      this.password = event.target.value;
-  }
-}
 onSubmit() {
-  if (this.isUsernameValid) {
-    this.loginService
-      .login(this.username, this.password);
-  }
+  this.auth.login(this.username, this.password)
+  .pipe(first()).subscribe(
+    result => this.router.navigate(['dashboard']),
+    err => this.error = 'دسترسي ندارين'
+  );
 }
 }
 

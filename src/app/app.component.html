@@ -1,22 +1,30 @@
 <div id="login-container" class="flex container mx-auto items-center justify-center">
   <div class="w-full max-w-xs">
-    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <img src="../../assets/logo.png" class="logo" />
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-          نام كاربري
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
-        <p class="text-red-500 text-xs italic">Username can consist of letters and numbers only!</p>
+    <form (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <img src="../assets/human.png" class="logo" />
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+            نام كاربري
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3
+           px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+           name="username" type="text" placeholder="Username" [(ngModel)]="username">
+        </div>
       </div>
-      <div class="mb-6">
-        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-          رمز
-        </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+      <div class="flex flex-wrap -mx-3 mb-6">
+        <div class="w-full px-3">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+            رمز
+          </label>
+          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3
+           px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" name="password"
+            type="password" placeholder="******************" [(ngModel)]="password">
+        </div>
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded
+         focus:outline-none focus:shadow-outline" type="submit">
           ورود
         </button>
         <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
@@ -24,14 +32,11 @@
         </a>
       </div>
     </form>
-    <p class="text-center text-white text-xs">
-      ©2020 Banking App by Duomly. All rights reserved.
-    </p>
+  
   </div>
   <div class="notification bg-indigo-900 text-center py-4 lg:px-4">
     <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">ERROR</span>
-      <span class="font-semibold mr-2 text-left flex-auto">Error message here</span>
+  
     </div>
   </div>
 </div>
