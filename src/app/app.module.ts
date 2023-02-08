@@ -27,7 +27,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         allowedDomains: ['localhost:4200'],
-        disallowedRoutes: []
+        disallowedRoutes: ['localhost:4000/api/auth']
       }
     })
   ],
