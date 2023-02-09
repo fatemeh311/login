@@ -1,6 +1,6 @@
 import { AuthService } from './services/guards/auth.service';
-import { Component } from '@angular/core';
-import { first } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
