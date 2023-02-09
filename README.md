@@ -4,9 +4,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ![demo](https://user-images.githubusercontent.com/51530839/217570387-508462da-6918-47a5-ae27-c29565d353a5.PNG)
 
-## Diagram app
-
-![diagram](https://user-images.githubusercontent.com/51530839/217579079-346d6b19-d761-43ba-8965-db5d48272857.jpg)
 
 In this application, a token is created from the server side and the token is sent from the client side with a request and sent to the access level service.
 
