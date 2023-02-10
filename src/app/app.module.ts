@@ -1,13 +1,17 @@
+import { AuthService } from './services/guards/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { FormsModule } from '@angular/forms';
+import { APP_CONFIG,AppConfig } from './services/app.config';
+import { AuthInterceptor } from './services/auth.interceptor';
+
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -31,7 +35,15 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {provide: APP_CONFIG, useValue: AppConfig},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

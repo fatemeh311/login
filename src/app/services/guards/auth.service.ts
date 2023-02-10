@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -9,13 +9,15 @@ import * as jwt_decode from "jwt-decode";
 })
 export class AuthService {
 
+  getToken : any
+
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<boolean> {
     return this.http.post<{token: string}>('/api/auth', {username: username, password: password})
       .pipe(
         map(result => {
-          localStorage.setItem('access_token', result.token);
+          this.getToken = localStorage.setItem('access_token', result.token);
           return true;
         })
       );
@@ -24,6 +26,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('access_token');
   }
+
   // getDecodedAccessToken(): any {
   //   return jwt_decode(this.getRawAuthToken(AuthTokenType.AccessToken));
   // }
